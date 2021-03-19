@@ -1,0 +1,3 @@
+This is some random text.
+To show how is is transformed to JSON format.
+3rd line starts here.
