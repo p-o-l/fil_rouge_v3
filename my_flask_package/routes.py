@@ -1,6 +1,5 @@
 """
 Route functions for the fil_rouge_v0.3 flask app
-#TODO : use UUID on CSV and upload file
 """
 # Standard library imports
 import os
