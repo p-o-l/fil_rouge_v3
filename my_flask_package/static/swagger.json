@@ -1,0 +1,140 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "An API which receives different file types, and returns them to the user in JSON format, along with metadata about the file..",
+    "version": "0.3",
+    "title": "Projet Fil Rouge v0.3",
+    "contact": {
+      "email": "pol.rakower@student-cs.fr"
+    }
+  },
+  "host": "fil_rouge_v0.3.rkr.p2021.ajoga.fr",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "send_file",
+      "description": "Send your files over and I will try to return them, hopefully intact, as JSON",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://"
+      }
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/send_file/": {
+      "post": {
+        "tags": [
+          "upload"
+        ],
+        "summary": "Send a file to the API and hope to get a JSON in return",
+        "description": "",
+        "operationId": "uploadFile",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "file to upload",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          },
+          "404": {
+            "description": "Failure. could not find resource / no file recieved by the server",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          },
+          "415": {
+            "description": "Failure. un-supported file type",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Metadata": {
+      "type": "object",
+      "properties": {
+        "result_msg": {
+          "type": "string",
+          "description": "success or failure"
+        },
+        "file_id": {
+          "type": "string",
+          "description": "the filename is converted to a UUID for security reasons"
+        },
+        "type": {
+          "type": "string",
+          "description": "the (declared) file extension"
+        },
+        "num_pages": {
+          "type": "integer",
+          "description": "for page based documents"
+        },
+        "num_chars": {
+          "type": "integer",
+          "description": "for text based documents"
+        },
+        "num_words": {
+          "type": "integer",
+          "description": "for text based documents"
+        },
+        "num_lines": {
+          "type": "integer",
+          "description": "for text based documents"
+        },
+        "num_columns": {
+          "type": "integer",
+          "description": "for column-table based documents"
+        },
+        "document_information": {
+          "type": "string",
+          "description": "for pdf file types, returns document description metadata from the pdf header"
+        },
+        "size": {
+          "type": "object",
+          "description": "for image file types, returns the size of the image as a list [x, y]"
+        },
+        "data": {
+          "type": "string",
+          "description": "depending on file format, file output encoding may vary"
+        }
+      }
+    },
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Projet Fil Rouge v0.3",
+    "url": "http://"
+  }
+}

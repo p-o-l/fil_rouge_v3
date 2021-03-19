@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+    flask_app-filrouge_v0.3:
+        build: .
+        ports:
+            - "5000-5005:5000"
+
+    nginx:
+        build: ./nginx
+        ports:
+          - "80:80"
+        depends_on:
+          - flask_app-filrouge_v0.3

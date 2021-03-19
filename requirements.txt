@@ -1,0 +1,17 @@
+aniso8601==8.0.0
+boto3==1.17.24
+botocore==1.20.24
+click==7.1.2
+Flask==1.1.2
+Flask-RESTful==0.3.8
+flask-swagger-ui==3.36.0
+itsdangerous==1.1.0
+Jinja2==2.11.2
+MarkupSafe==1.1.1
+Pillow==8.0.1
+PyPDF2==1.26.0
+python-dotenv==0.15.0
+pytz==2020.1
+requests==2.25.1
+six==1.15.0
+Werkzeug==1.0.1
